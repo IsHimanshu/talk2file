@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+</head>
+<body>
+    <div id="chat-header">
+        <h1>Chat with {{ username }}</h1>
+        {% if not has_files %}
+        <div class="warning-banner">
+            Please upload files first to enable chat functionality
+        </div>
+        {% endif %}
+    </div>
+
+    <div id="chat-container">
+        {% for message in chat_history %}
+            {% if message.startswith('You:') %}
+                <div class="message user-message">{{ message }}</div>
+            {% elif message.startswith('System:') %}
+                <div class="message system-message">{{ message }}</div>
+            {% else %}
+                <div class="message app-message">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="chat-input-container">
+        <form id="chat-form">
+            <input type="text" 
+                   id="chat-input" 
+                   placeholder="Type a message" 
+                   required 
+                   {% if not has_files %}disabled{% endif %}>
+            <button type="submit" {% if not has_files %}disabled{% endif %}>Send</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+/* chat.css: Add your styles for the chat page here */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  #chat-header {
+    background-color: #075E54;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  
+  #chat-container {
+    background-color: #E5DDD5;
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message {
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px 0;
+    max-width: 70%;
+    display: inline-block;
+    position: relative;
+    word-wrap: break-word;
+  }
+  
+  .user-message {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+    text-align: right;
+  }
+  
+  .app-message {
+    background-color: #FFF;
+    align-self: flex-start;
+  }
+  
+  .loading-message {
+    background-color: #FFC107;
+    align-self: center;
+    text-align: center;
+  }
+  
+  #chat-input-container {
+    display: flex;
+    align-items: center;
+    background-color: #F1F1F1;
+    padding: 10px;
+    flex-shrink: 0;
+  }
+  
+  #chat-form {
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  #chat-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  #chat-input:focus {
+    outline: none;
+  }
+  
+  button {
+    background-color: #25D366;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  #loading-message {
+    color: #FF5733;
+    padding-left: 10px;
+  }

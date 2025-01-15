@@ -1,0 +1,26 @@
+<!-- index.html: Add your HTML for the index page here -->
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Upload Files</title>
+  <link rel="stylesheet" type="text/css" href="../static/index.css">
+</head>
+<body>
+<div class='App'>
+  <form id="upload-form" method="post" enctype=multipart/form-data action="{{ url_for('upload_file') }}">
+<div class="form-container">
+  <div class="form-group">
+  <label for="username"  >Type a unique username::</label>
+  <input type="text" id="username" name="username" ><br>
+  </div>
+  <div class="form-group">
+    <label for="file"  >Upload all your files:: </label>
+    <input type="file" type="file" name="file" id="file" multiple required><br>
+  </div>
+    <button type="submit" id="submitButton" >Upload Files</button>
+  </div>
+  </form>
+  
+</div>
+</body>
+</html>
