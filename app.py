@@ -76,34 +76,34 @@ def send_message():
             "chat_history": ["System: Please upload files first to enable chat functionality."]
         }), 400
 
-    #try:
-    message = request.form["message"]
-    print(f"Received message: {message}")
-    
-    chat_history = session.get("chat_history", [])
-    chat_history.append(f"You: {message}")
-    print("Send message to backend:", message)
-
-    #try:
-    server_response = talk2vectorDb.retrieve_answers_from_faiss(
-        vectorstore, message
-    )
-    print("Server response:", server_response)
-    #except Exception as e:
-    print(f"Error retrieving response: {str(e)}")
-    server_response = "Error: Unable to process your request. Please try uploading your files again."
+    try:
+        message = request.form["message"]
+        print(f"Received message: {message}")
         
-    chat_history.append(server_response)
-    session["chat_history"] = chat_history
-    
-    return jsonify({"chat_history": chat_history})
+        chat_history = session.get("chat_history", [])
+        chat_history.append(f"You: {message}")
+        print("Send message to backend:", message)
 
-    #except Exception as e:
-    print(f"Error in send_message: {str(e)}")
-    return jsonify({
-        "error": str(e),
-        "chat_history": session.get("chat_history", []) + ["System: An error occurred processing your message."]
-    }), 500
+        try:
+            server_response = talk2vectorDb.retrieve_answers_from_faiss(
+                vectorstore, message
+            )
+            print("Server response:", server_response)
+        except Exception as e:
+            print(f"Error retrieving response: {str(e)}")
+            server_response = "Error: Unable to process your request. Please try uploading your files again."
+                
+        chat_history.append(server_response)
+        session["chat_history"] = chat_history
+            
+        return jsonify({"chat_history": chat_history})
+
+    except Exception as e:
+        print(f"Error in send_message: {str(e)}")
+        return jsonify({
+            "error": str(e),
+            "chat_history": session.get("chat_history", []) + ["System: An error occurred processing your message."]
+        }), 500
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
