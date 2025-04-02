@@ -1,1 +1,5 @@
 __pycache__
+
+.env
+fugashitest.py
+setup_dll.py

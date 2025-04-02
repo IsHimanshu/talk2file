@@ -1,3 +1,4 @@
+import setup_dll  # This will set up DLL paths before any other imports
 import os
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -16,6 +17,8 @@ from langchain_community.document_loaders import (
     UnstructuredPowerPointLoader,
     UnstructuredWordDocumentLoader,
 )
+from langdetect import detect
+from langchain_core.output_parsers import StrOutputParser
 FILE_LOADER_MAPPING = {
     ".csv": (CSVLoader, {"encoding": "utf-8"}),
     ".doc": (UnstructuredWordDocumentLoader, {}),
@@ -66,8 +69,21 @@ def read_file_and_save_to_faiss(directory_name):
     all_splits = text_splitter.split_documents(documents)
     print("length of splits: ", len(all_splits))
 
+    # Detect if content is Japanese
+    sample_text = all_splits[0].page_content if all_splits else ""
+    try:
+        is_japanese = detect(sample_text) == 'ja'
+    except:
+        is_japanese = False
+
     ### prepare huggingface embedding model
-    model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    if is_japanese:
+        model_name = "cl-nagoya/ruri-large"  # Ruri-large equivalent for Japanese
+        print("Using Japanese-optimized embedding model")
+    else:
+        model_name = "sentence-transformers/all-MiniLM-L6-v2"
+        print("Using default embedding model")
+
     model_kwargs = {"device": "cpu"}
     encode_kwargs = {"normalize_embeddings": False}
     embeddings_huggingFace = HuggingFaceEmbeddings(
