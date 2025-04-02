@@ -1,0 +1,12 @@
+Langchain_core
+Flask
+Fugashi 
+Sentencspiece 
+Unidic-lite
+Faiss-cpu
+Langchain_openai
+Sentence_transformers
+Pypdf
+Langchain_community
+Langdetect
+Python-dotenv 
