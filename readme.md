@@ -70,8 +70,3 @@ Pull requests and feature suggestions are welcome!
 📜 License
 
 This project is licensed under the MIT License.
-
-
----
-
-Developed by Your Name 🚀
