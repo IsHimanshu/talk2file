@@ -1,7 +1,7 @@
 Langchain_core
 Flask
 Fugashi 
-Sentencspiece 
+Sentencepiece 
 Unidic-lite
 Faiss-cpu
 Langchain_openai
