@@ -19,9 +19,8 @@ An AI-powered chatbot that allows you to have interactive conversations with the
 
 ### 1️⃣ Clone the Repository  
 ```bash
-git clone https://github.com/yourusername/talk-to-docs.git
-cd talk-to-docs
-
+git clone https://github.com/ishimanshu/talk2file.git
+cd talk2file
 2️⃣ Install Dependencies
 
 pip install -r requirements.txt
